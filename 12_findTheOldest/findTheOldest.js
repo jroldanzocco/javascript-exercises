@@ -1,23 +1,23 @@
-const findTheOldest = function(list) {
-    let partial;
-    let oldestAge = -Infinity
-    let index;
-    const CURRENT_YEAR = 2022;
-    for(let i = 0; i < list.length; i++){
-        if(list[i].yearOfDeath === undefined){
-            list[i].yearOfDeath = CURRENT_YEAR;
+function isLive(option){
+    return !option.yearOfDeath
+}
+const findTheOldest = list => {
+    const sorted = list.sort((a,b) =>{
+        const CURRENT_YEAR = (new Date()).getFullYear()
+        if(isLive(a)){
+            a.yearOfDeath = CURRENT_YEAR
+        }else if(isLive(b)){
+            b.yearOfDeath = CURRENT_YEAR
         }
-        partial = Object.values(list[i]).filter(n => {
-            return typeof(n) ==="number"}).reduce((a, b) => b - a)
-                
-        if(partial > oldestAge){
-            oldestAge = partial
-            index = i
-        }
-    
-    }
-    return list[index];
-};
+        const first = a.yearOfDeath - a.yearOfBirth
+        const second = b.yearOfDeath - b.yearOfBirth
+        return first > second ? -1 : 1
+    })
+    return (sorted[0])
+}
+
 
 // Do not edit below this line
 module.exports = findTheOldest;
+
+

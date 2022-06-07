@@ -1,14 +1,10 @@
-const fibonacci = function(n) {
-    let number = Number(n);
+const fibonacci = n => {
+    const number = Number(n);
     if(number < 0){
         return "OOPS"
-    }else if(number === 0){
-        return 0;
-    }else if(number === 1){
-        return 1;
-    }
-
-    else{
+    }else if(number === 0 || number === 1){
+        return number;
+    }else{
         return fibonacci(number - 1) + fibonacci(number - 2)
     }
 };

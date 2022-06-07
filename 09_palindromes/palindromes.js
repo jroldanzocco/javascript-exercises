@@ -1,7 +1,8 @@
 const palindromes = function (str) {
-    const reverseStr = str.toLowerCase().replace(/[!.,\s]/g,"").split("").reverse().join("")
+    const cleanStr = str.toLowerCase().replace(/[!.,\s]/g,"")
+    const reverseStr = cleanStr.split("").reverse().join("")
    
-    return str.replace(/[!.,\s]/g,"").toLowerCase() === reverseStr;
+    return cleanStr === reverseStr;
 
 };  
 
